@@ -26,4 +26,9 @@ public class Laser : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public int GetDamage()
+    {
+        return 30;
+    }
 }
