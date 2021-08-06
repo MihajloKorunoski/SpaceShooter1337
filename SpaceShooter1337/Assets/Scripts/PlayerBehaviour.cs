@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    [SerializeField] private Transform spawnSpot;
+    [SerializeField] private Laser laserPrefab;
     private float Radius { get; set; }
+    private float LaserSpeed { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
         Radius = transform.localScale.x * 2f;
+        
+        Laser laser = Instantiate(laserPrefab);
+        laser.transform.SetParent(spawnSpot);
+        LaserSpeed = 5f;
+        laser.Init(LaserSpeed);
+        
     }
 
     // Update is called once per frame

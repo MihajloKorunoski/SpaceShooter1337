@@ -14,9 +14,4 @@ public class GameMenager : MonoBehaviour
         bottomLeftPosition = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
         topRightPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }
