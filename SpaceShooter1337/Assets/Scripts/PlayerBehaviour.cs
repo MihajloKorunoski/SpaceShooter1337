@@ -15,8 +15,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Laser laser = Instantiate(laserPrefab);
         laser.transform.position = spawnSpot.position;
-        laserSpeed = 5f;
-        laser.Init(laserSpeed);
+        laserSpeed = 10f;
+        laser.Init(Vector2.up, laserSpeed, true);
     }
 
     // Start is called before the first frame update

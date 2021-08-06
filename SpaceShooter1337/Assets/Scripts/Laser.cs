@@ -6,15 +6,20 @@ public class Laser : MonoBehaviour
 {
     private float speed { get; set; }
 
-    public void Init(float mySpeed)
+    private Vector2 dir;
+    public bool isFromPlayer { get; set; }
+    
+    public void Init(Vector2 myDir, float mySpeed, bool isFromPl)
     {
+        dir = myDir;
         this.speed = mySpeed;
+        isFromPlayer = isFromPl;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(speed * Vector2.up * Time.deltaTime);
+        transform.Translate(speed * dir * Time.deltaTime);
 
         if (transform.position.y >= GameMenager.topRightPosition.y)
         {
