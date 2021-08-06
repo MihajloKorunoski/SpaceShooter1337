@@ -8,7 +8,8 @@ public class GameMenager : MonoBehaviour
 
     public static Vector2 topRightPosition { get; set; }
 
-    public PlayerBehaviour player { get; set; }
+    //public PlayerBehaviour player { get; set; }
+    public GameObject player { get; set; }
 
     public MonsterBehaviour monster { get; set; }
 
@@ -19,7 +20,7 @@ public class GameMenager : MonoBehaviour
     {
         bottomLeftPosition = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
         topRightPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-
+        
         Instantiate(player);
     }
 

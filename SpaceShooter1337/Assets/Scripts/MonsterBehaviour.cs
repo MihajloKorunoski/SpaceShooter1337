@@ -10,6 +10,11 @@ public class MonsterBehaviour : EnemyBehaviour
     void Update()
     {
         transform.Translate((monsterSpeed * Vector2.down * Time.deltaTime));
+
+        if (transform.position.y + transform.localScale.y <= GameMenager.bottomLeftPosition.y)
+        {
+            Destroy((gameObject));
+        }
     }
 
     public void SetSpeed(int speed)
