@@ -9,12 +9,16 @@ public class Laser : MonoBehaviour
     public void Init(float mySpeed)
     {
         this.speed = mySpeed;
-        transform.localPosition = Vector2.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(speed * Vector2.up * Time.deltaTime);
+
+        if (transform.position.y >= GameMenager.topRightPosition.y)
+        {
+            Destroy(gameObject);
+        }
     }
 }
