@@ -31,7 +31,7 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speed = 10f;
+        float speed = 5f;
         float moveHorizontal = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
 
         if (transform.position.x + radius >= GameMenager.topRightPosition.x && moveHorizontal > 0)
