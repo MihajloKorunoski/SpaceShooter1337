@@ -5,8 +5,9 @@ using UnityEngine;
 
 public abstract class EnemyBehaviour : MonoBehaviour
 {
-    private int health{get; set;}
-    
+    [SerializeField] private Coin goldCoin;
+    private int health { get; set; }
+
     void Awake()
     {
         health = GetMaxHealth();
@@ -14,9 +15,12 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     protected virtual void Die()
     {
+        int coins = GetCoins();
+        for (int i = 0; i < coins; ++i)
+            Instantiate(goldCoin, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
-    
+
     void TakeDamage(int damage)
     {
         health = Mathf.Max(0, health - damage);
@@ -26,7 +30,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
             Die();
         }
     }
-    
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.CompareTag("Laser"))
@@ -39,6 +43,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
             }
         }
     }
+
     public abstract int GetMaxHealth();
     public abstract int GetCoins();
 }

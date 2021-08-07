@@ -11,6 +11,21 @@ public class PlayerBehaviour : MonoBehaviour
     private float invokeRepeatingTime { get; set; }
     private float repeatRate { get; set; }
 
+    public delegate void CoinGaining();
+
+    public event CoinGaining GainCoin;
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.CompareTag("Coin"))
+        {
+            if (GainCoin != null)
+                GainCoin();
+            Destroy(other.gameObject);
+        }
+    }
+
     void ShootLaser()
     {
         Laser laser = Instantiate(laserPrefab);
@@ -31,7 +46,7 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speed = 5f;
+        float speed = 8f;
         float moveHorizontal = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
 
         if (transform.position.x + radius >= GameMenager.topRightPosition.x && moveHorizontal > 0)
@@ -45,6 +60,5 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         transform.Translate(Vector2.right * moveHorizontal);
-
     }
 }

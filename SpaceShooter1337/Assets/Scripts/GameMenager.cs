@@ -1,33 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMenager : MonoBehaviour
 {
     public static Vector2 bottomLeftPosition { get; set; }
 
     public static Vector2 topRightPosition { get; set; }
+    
+    private int coins {get; set;}
 
     //public PlayerBehaviour player { get; set; }
-    public PlayerBehaviour player;
+    [SerializeField]
+    PlayerBehaviour player;
 
-    public MonsterBehaviour monster;
+    [SerializeField]
+    MonsterBehaviour monster;
 
-    public GameObject wave;
+    [SerializeField]
+    GameObject wave;
+
+    [SerializeField]
+    private TMP_Text points;
     
-
-    // Start is called before the first frame update
     void Start()
     {
         bottomLeftPosition = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
         topRightPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         
-        Instantiate(player);
-        
-        StartMonsterGeneration();
+        PlayerBehaviour p = Instantiate(player) as PlayerBehaviour;
+        p.GainCoin += HandleCoinGaining;
+        StartGeneratingMonster();
     }
 
-    void StartMonsterGeneration()
+    void HandleCoinGaining()
+    {
+        ++coins;
+        points.text = coins.ToString();
+    }
+    void StartGeneratingMonster()
     {
         InvokeRepeating("GenerateWave", 2, 3); 
     }
@@ -35,13 +48,13 @@ public class GameMenager : MonoBehaviour
     {
         GameObject monsterWave = Instantiate( wave, Vector2.zero, Quaternion.identity, transform);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; ++i)
         {
-            float x = (i + 0.5f) / 5;
-            Vector2 pos = Camera.main.ScreenToWorldPoint((new Vector2(Screen.width * x, Screen.height)));
-            pos += Vector2.up * monster.transform.localScale.y;
+            float position = (i + 0.5f) / 5;
+            Vector2 monsterPosition = Camera.main.ScreenToWorldPoint((new Vector2(Screen.width * position, Screen.height)));
+            monsterPosition += Vector2.up * monster.transform.localScale.y;
 
-            Instantiate(monster, pos, Quaternion.identity, monsterWave.transform);
+            Instantiate(monster, monsterPosition, Quaternion.identity, monsterWave.transform);
         }
     }
 }
