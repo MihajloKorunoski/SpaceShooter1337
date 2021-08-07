@@ -9,11 +9,12 @@ public class GameMenager : MonoBehaviour
     public static Vector2 topRightPosition { get; set; }
 
     //public PlayerBehaviour player { get; set; }
-    public GameObject player { get; set; }
+    public PlayerBehaviour player;
 
-    public MonsterBehaviour monster { get; set; }
+    public MonsterBehaviour monster;
 
-    public GameObject wave { get; set; }
+    public GameObject wave;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,8 @@ public class GameMenager : MonoBehaviour
         topRightPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         
         Instantiate(player);
+        
+        StartMonsterGeneration();
     }
 
     void StartMonsterGeneration()

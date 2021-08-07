@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class EnemyBehaviour : MonoBehaviour
 {
-    int health;
+    private int health{get; set;}
     
     void Awake()
     {
@@ -29,7 +29,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.tag == "Laser")
+        if (other.transform.CompareTag("Laser"))
         {
             Laser laser = other.GetComponent<Laser>();
             if (laser.isFromPlayer)
