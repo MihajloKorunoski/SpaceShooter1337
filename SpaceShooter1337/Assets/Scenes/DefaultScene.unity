@@ -535,10 +535,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9666cf0d7d682ed4c95cd4bf759fa417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 6206195113540883161, guid: d9a31b6a20a18a245ae305e578f27185, type: 3}
+  player: {fileID: 560832058143062774, guid: 2ce27bde1475f564989cdb1e00c15bd6, type: 3}
   monster: {fileID: 2536462741313913775, guid: 64046fb45728e76468654728f3f14e0e, type: 3}
   wave: {fileID: 5412887679015436281, guid: 99b489fe9a0b103488a0028917ba2de2, type: 3}
   points: {fileID: 1776187644}
+  boss: {fileID: -7567925178148361748, guid: 7a2401195fcb61f4ebe3f1f819a6b6e7, type: 3}
 --- !u!4 &2061491542
 Transform:
   m_ObjectHideFlags: 0

@@ -5,9 +5,10 @@ using UnityEngine;
 public class MonsterBehaviour : EnemyBehaviour
 {
     private float monsterSpeed = 2f;
-    private int maxHealth = 100;
-    private int coins = 3;
-    
+    private int maxHealth { get; set; }
+    private int coins { get; set; }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -19,18 +20,20 @@ public class MonsterBehaviour : EnemyBehaviour
         }
     }
 
-    public void SetSpeed(int speed)
+    public void SetSpeed(float speed)
     {
         monsterSpeed = speed;
     }
 
     public override int GetMaxHealth()
     {
+        maxHealth = 100;
         return maxHealth;
     }
 
     public override int GetCoins()
     {
+        coins = 3;
         return coins;
     }
 }

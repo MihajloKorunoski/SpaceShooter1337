@@ -12,8 +12,10 @@ public class PlayerBehaviour : MonoBehaviour
     private float repeatRate { get; set; }
 
     public delegate void CoinGaining();
-
     public event CoinGaining GainCoin;
+    
+    public delegate void PlayerDying();
+    public event PlayerDying PlayerDied;
 
 
     void OnTriggerEnter2D(Collider2D other)
@@ -23,6 +25,24 @@ public class PlayerBehaviour : MonoBehaviour
             if (GainCoin != null)
                 GainCoin();
             Destroy(other.gameObject);
+        }
+
+        if (other.transform.CompareTag("Enemy"))
+        {
+            if(PlayerDied != null)
+                PlayerDied();
+        }
+
+        if (other.transform.CompareTag("Laser"))
+        {
+            Laser laser = other.GetComponent<Laser>();
+            if (!laser.isFromPlayer)
+            {
+                if (PlayerDied != null)
+                    PlayerDied();
+                Destroy(other.gameObject);
+            }
+                
         }
     }
 

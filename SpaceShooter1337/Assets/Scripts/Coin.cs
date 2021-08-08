@@ -21,4 +21,5 @@ public class Coin : MonoBehaviour
         if (transform.position.y + transform.localScale.y < GameMenager.bottomLeftPosition.y)
             Destroy(gameObject);
     }
+    
 }
