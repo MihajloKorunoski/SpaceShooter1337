@@ -8,8 +8,8 @@ public class Coin : MonoBehaviour
     void Start()
     {
         Rigidbody2D body = GetComponent<Rigidbody2D>();
-        float x = Random.Range(-100f, 100f);
-        float y = Random.Range(50f, 200f);
+        float x = Random.Range(-50f, 100f);
+        float y = Random.Range(50f, 100f);
         Vector2 force = new Vector2(x, y);
 
         body.AddForce(force);

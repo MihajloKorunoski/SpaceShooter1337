@@ -15,9 +15,10 @@ public class BossBehaviour : EnemyBehaviour
 
     private Vector2 direction { get; set; }
     private Laser laser { get; set; }
-    private int maxHealth { get; set; }
     
-    private int coins { get; set; }
+    private static int maxHealth = 2000;
+
+    private static int coins = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -35,25 +36,34 @@ public class BossBehaviour : EnemyBehaviour
     void ShootPlayer()
     {
         direction = (player.position - transform.position).normalized;
-        laser = Instantiate(laserPrefab, spawnSpot.position, Quaternion.identity) as Laser;
+        laser = Instantiate(laserPrefab, spawnSpot.position, Quaternion.identity);
         laser.Init(direction, 5f, false);
     }
 
     public override int GetMaxHealth()
     {
-        maxHealth = 2000;
         return maxHealth;
     }
 
     public override int GetCoins()
     {
-        coins = 10;
         return coins;
     }
+
     protected override void Die()
     {
-        if(BossDied != null)
+        if (BossDied != null)
             BossDied();
         base.Die();
+    }
+
+    public static void SetCoins(int newCoins)
+    {
+        coins = newCoins;
+    }
+
+    public static void SetHealth(int newHealth)
+    {
+        maxHealth = newHealth;
     }
 }

@@ -6,7 +6,7 @@ public class MonsterBehaviour : EnemyBehaviour
 {
     private float monsterSpeed = 2f;
     private int maxHealth { get; set; }
-    private int coins { get; set; }
+    private static int coins = 3;
 
 
     // Update is called once per frame
@@ -25,6 +25,11 @@ public class MonsterBehaviour : EnemyBehaviour
         monsterSpeed = speed;
     }
 
+    public static void SetCoins(int newCoins)
+    {
+        coins = newCoins;
+    }
+
     public override int GetMaxHealth()
     {
         maxHealth = 100;
@@ -33,7 +38,6 @@ public class MonsterBehaviour : EnemyBehaviour
 
     public override int GetCoins()
     {
-        coins = 3;
         return coins;
     }
 }

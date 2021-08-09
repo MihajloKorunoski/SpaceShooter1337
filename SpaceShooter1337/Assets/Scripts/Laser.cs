@@ -7,14 +7,13 @@ public class Laser : MonoBehaviour
     private float speed { get; set; }
     private Vector2 direction { get; set; }
     public bool isFromPlayer { get; set; }
-    public int damage { get; set; }
+    public static int damage { get; set; }
 
     public void Init(Vector2 myDir, float mySpeed, bool isFromPl)
     {
         this.direction = myDir;
         this.speed = mySpeed;
         this.isFromPlayer = isFromPl;
-        damage = 30;
     }
 
     // Update is called once per frame
@@ -28,6 +27,10 @@ public class Laser : MonoBehaviour
         }
     }
 
+    public static void SetDamage(int newDamage)
+    {
+        damage = newDamage;
+    }
     public int GetDamage()
     {
         return damage;

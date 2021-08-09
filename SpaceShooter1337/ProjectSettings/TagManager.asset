@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Laser
   - Coin
+  - Points
   layers:
   - Default
   - TransparentFX
