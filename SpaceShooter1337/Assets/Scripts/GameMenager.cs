@@ -29,7 +29,7 @@ public class GameMenager : MonoBehaviour
 
     private int bossNumber {get; set;}
     private int waves { get; set; }
-    private float monsterSpeed = 2f;
+    private float monsterSpeed;
     private int random;
     private int maxHealth;
     private static string FullCoins { get; set; }
@@ -37,10 +37,16 @@ public class GameMenager : MonoBehaviour
     void Start()
     {
         damage = 30;
+        coins = 3;
+        maxHealth = 2000;
+        bossCoins = 5;
+        monsterSpeed = 2f;
+        
         Laser.SetDamage(damage);
-        maxHealth = boss[0].GetMaxHealth();
-        bossCoins = boss[0].GetCoins();
-        coins = monster[0].GetCoins();
+        BossBehaviour.SetHealth(maxHealth);
+        BossBehaviour.SetCoins(bossCoins);
+        MonsterBehaviour.SetCoins(coins);
+        monster[0].SetSpeed(monsterSpeed);
         bottomLeftPosition = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
         topRightPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         PlayerBehaviour p = Instantiate(player);

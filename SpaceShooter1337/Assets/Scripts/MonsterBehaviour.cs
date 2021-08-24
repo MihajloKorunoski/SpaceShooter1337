@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MonsterBehaviour : EnemyBehaviour
 {
-    private float monsterSpeed = 2f;
+    private float monsterSpeed;
     private int maxHealth { get; set; }
-    private static int coins = 3;
+    private static int coins;
 
 
     // Update is called once per frame
