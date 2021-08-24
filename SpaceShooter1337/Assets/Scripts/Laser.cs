@@ -23,7 +23,8 @@ public class Laser : MonoBehaviour
 
         if (transform.position.y >= GameMenager.topRightPosition.y)
         {
-            Destroy(gameObject);
+            if (gameObject != null)
+                Destroy(gameObject);
         }
     }
 

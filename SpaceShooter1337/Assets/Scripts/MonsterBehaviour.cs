@@ -16,7 +16,8 @@ public class MonsterBehaviour : EnemyBehaviour
 
         if (transform.position.y + transform.localScale.y <= GameMenager.bottomLeftPosition.y)
         {
-            Destroy((gameObject));
+            if (gameObject != null)
+                Destroy((gameObject));
         }
     }
 
