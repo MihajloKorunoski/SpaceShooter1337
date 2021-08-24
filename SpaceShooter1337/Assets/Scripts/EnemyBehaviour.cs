@@ -11,6 +11,10 @@ public abstract class EnemyBehaviour : MonoBehaviour
     void Awake()
     {
         health = GetMaxHealth();
+        if (gameObject == null)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     protected virtual void Die()
@@ -18,8 +22,10 @@ public abstract class EnemyBehaviour : MonoBehaviour
         int coins = GetCoins();
         for (int i = 0; i < coins; ++i)
             Instantiate(goldCoin, transform.position, Quaternion.identity);
-        if (gameObject != null)
-            Destroy(gameObject);
+        if (gameObject != this) {
+                Destroy (gameObject);
+            }
+        
     }
 
     void TakeDamage(int damage)
@@ -40,8 +46,9 @@ public abstract class EnemyBehaviour : MonoBehaviour
             if (laser.isFromPlayer)
             {
                 TakeDamage(laser.GetDamage());
-                if (other.gameObject != null)
-                    Destroy(other.gameObject);
+                if (other.gameObject != this) {
+                        Destroy (other.gameObject);
+                    }
             }
         }
     }

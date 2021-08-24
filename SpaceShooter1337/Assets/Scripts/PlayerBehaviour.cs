@@ -24,8 +24,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (GainCoin != null)
                 GainCoin();
-            if (other.gameObject != null)
-                Destroy(other.gameObject);
+            Destroy(other.gameObject);
         }
 
         if (other.transform.CompareTag("Enemy"))
@@ -41,8 +40,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 if (PlayerDied != null)
                     PlayerDied();
-                if (other.gameObject != null)
-                    Destroy(other.gameObject);
+                Destroy(other.gameObject);
             }
                 
         }

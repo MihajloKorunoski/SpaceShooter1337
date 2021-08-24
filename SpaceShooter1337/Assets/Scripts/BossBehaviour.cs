@@ -6,7 +6,6 @@ public class BossBehaviour : EnemyBehaviour
 {
     [SerializeField] private Transform spawnSpot;
     [SerializeField] private Laser laserPrefab;
-
     Transform player;
 
     public delegate void BossDying();

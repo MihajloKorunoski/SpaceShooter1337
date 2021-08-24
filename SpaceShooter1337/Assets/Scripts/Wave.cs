@@ -9,8 +9,7 @@ public class Wave : MonoBehaviour
     {
         if (transform.childCount == 0)
         {
-            if (gameObject != null)
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }

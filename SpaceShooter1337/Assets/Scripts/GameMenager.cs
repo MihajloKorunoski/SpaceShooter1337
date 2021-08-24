@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameMenager : MonoBehaviour
 {
@@ -33,7 +35,8 @@ public class GameMenager : MonoBehaviour
     private int random;
     private int maxHealth;
     private static string FullCoins { get; set; }
-
+    
+    
     void Start()
     {
         damage = 30;

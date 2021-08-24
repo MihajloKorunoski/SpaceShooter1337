@@ -7,7 +7,7 @@ public class MonsterBehaviour : EnemyBehaviour
     private float monsterSpeed;
     private int maxHealth { get; set; }
     private static int coins;
-
+   
 
     // Update is called once per frame
     void Update()
@@ -16,8 +16,7 @@ public class MonsterBehaviour : EnemyBehaviour
 
         if (transform.position.y + transform.localScale.y <= GameMenager.bottomLeftPosition.y)
         {
-            if (gameObject != null)
-                Destroy((gameObject));
+            Destroy((gameObject));
         }
     }
 
