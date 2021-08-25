@@ -47,8 +47,8 @@ public abstract class EnemyBehaviour : MonoBehaviour
             {
                 TakeDamage(laser.GetDamage());
                 if (other.gameObject != this) {
-                        Destroy (other.gameObject);
-                    }
+                    Destroy (other.gameObject);
+                }
             }
         }
     }

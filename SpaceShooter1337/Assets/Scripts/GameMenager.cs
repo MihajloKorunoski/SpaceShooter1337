@@ -76,7 +76,6 @@ public class GameMenager : MonoBehaviour
         ++coinsCount;
         points.text = coinsCount.ToString();
         FullCoins = coinsCount.ToString();
-
     }
 
     void StartGeneratingMonster()
@@ -92,13 +91,12 @@ public class GameMenager : MonoBehaviour
             Invoke("GenerateBoss", 5f);
             waves = Random.Range(3, 7);
             damage += 5;
-            maxHealth += 500;
             Laser.SetDamage(damage);
-            BossBehaviour.SetHealth(maxHealth);
-            if (bossCoins <= 50)
+
+            if (coins <= 10)
             {
-                bossCoins += 5;
-                BossBehaviour.SetCoins(bossCoins);
+                ++coins;
+                MonsterBehaviour.SetCoins(coins);
             }
 
             return;
@@ -125,18 +123,20 @@ public class GameMenager : MonoBehaviour
     void GenerateBoss()
     {
         Vector2 position = new Vector2(0, topRightPosition.y + 2.5f);
-        Instantiate(boss[bossNumber], position, Quaternion.identity, transform);
+        BossBehaviour bossBehaviour = Instantiate(boss[bossNumber], position, Quaternion.identity, transform);
         ++bossNumber;
         if (bossNumber > 3)
         {
             bossNumber = 0;
         }
-
-        if (coins <= 10)
+        if (bossCoins <= 50)
         {
-            ++coins;
-            MonsterBehaviour.SetCoins(coins);
+            bossCoins += 5;
+            BossBehaviour.SetCoins(bossCoins);
         }
+        
+        maxHealth += 500;
+        BossBehaviour.SetHealth(maxHealth);
     }
 
     public static string GetFullCoins()

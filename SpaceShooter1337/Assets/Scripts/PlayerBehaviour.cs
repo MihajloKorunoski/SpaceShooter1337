@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    // configuration parameters
+    
     [SerializeField] private Transform spawnSpot;
     [SerializeField] private Laser laserPrefab;
+    [SerializeField]float speed = 10f;
     private float radius { get; set; }
     private float laserSpeed { get; set; }
     private float invokeRepeatingTime { get; set; }
@@ -66,7 +69,6 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speed = 10f;
         float moveHorizontal = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
 
         if (transform.position.x + radius >= GameMenager.topRightPosition.x && moveHorizontal > 0)
