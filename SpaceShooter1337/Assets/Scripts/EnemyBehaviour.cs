@@ -22,17 +22,14 @@ public abstract class EnemyBehaviour : MonoBehaviour
         int coins = GetCoins();
         for (int i = 0; i < coins; ++i)
             Instantiate(goldCoin, transform.position, Quaternion.identity);
-        if (gameObject != this) {
-                Destroy (gameObject);
-            }
-        
+        Destroy(this.gameObject);
     }
 
     void TakeDamage(int damage)
     {
         health = Mathf.Max(0, health - damage);
 
-        if (health == 0)
+        if (health <= 0)
         {
             Die();
         }
@@ -46,9 +43,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
             if (laser.isFromPlayer)
             {
                 TakeDamage(laser.GetDamage());
-                if (other.gameObject != this) {
-                    Destroy (other.gameObject);
-                }
+                Destroy (other.gameObject);
             }
         }
     }

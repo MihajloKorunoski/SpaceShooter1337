@@ -60,6 +60,11 @@ public class GameMenager : MonoBehaviour
         StartGeneratingMonster();
     }
 
+    private void OnDestroy()
+    {
+        BossBehaviour.BossDied -= HandleBossDeath;
+    }
+
     void HandleBossDeath()
     {
         monsterSpeed += 0.2f;
