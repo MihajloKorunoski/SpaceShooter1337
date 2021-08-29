@@ -41,58 +41,58 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-									/*абстрактна класа за непријателите 
-									(од оваа класа наследуваат BossBehaviour и MonsterBehaviour) */
+							/*абстрактна класа за непријателите 
+							(од оваа класа наследуваат BossBehaviour и MonsterBehaviour) */
 public abstract class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private Coin goldCoin; 				//Овозможува поврзување на непријателот со паричките
-    private int health { get; set; } 					//health на чудовиштата
+    [SerializeField] private Coin goldCoin; 		//Овозможува поврзување на непријателот со паричките
+    private int health { get; set; } 			//health на чудовиштата
 
-    void Awake() 							// Unity функција која што се извршува пред да почне играта
+    void Awake() 					// Unity функција која што се извршува пред да почне играта
     {
-        health = GetMaxHealth(); 					// Health на непријателот се иницијализира пред да почне играта
+        health = GetMaxHealth(); 			// Health на непријателот се иницијализира пред да почне играта
         if (gameObject == null) 
         {
-            DontDestroyOnLoad(gameObject); 				// во случај објектот да е null, спречува да е убиен при вчитување
+            DontDestroyOnLoad(gameObject); 		// во случај објектот да е null, спречува да е убиен при вчитување
         }
     }
 
-    protected virtual void Die() 					// виртуелна функција, која непријателот го “умртвува“
+    protected virtual void Die() 			// виртуелна функција, која непријателот го “умртвува“
     {
-        int coins = GetCoins(); 					// ја зема соодветната количина на парички од класата Coins
+        int coins = GetCoins(); 			// ја зема соодветната количина на парички од класата Coins
         for (int i = 0; i < coins; ++i)
             Instantiate(goldCoin, transform.position, Quaternion.identity); //инстанцира парички
-        Destroy(this.gameObject); 					// го уништува објектот от тип непријател
+        Destroy(this.gameObject); 			// го уништува објектот от тип непријател
     }
 
-    void TakeDamage(int damage) 					// Функција која манипулира со health на непријателите
+    void TakeDamage(int damage) 			// Функција која манипулира со health на непријателите
     {
-        health = Mathf.Max(0, health - damage); 			/* новата енергија пресметана како макс од 
-									разликата на новата енергија и направената штета или нула, 
-									во случај да биде негативна разликата */
+        health = Mathf.Max(0, health - damage); 	/* новата енергија пресметана како макс од 
+							разликата на новата енергија и направената штета или нула, 
+							во случај да биде негативна разликата */
         if (health == 0)
         {
-            Die(); 							// непријателот умира
+            Die(); 					// непријателот умира
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other) 				// Функција која овозможува судир на непријател со ласерот од играчот
+    void OnTriggerEnter2D(Collider2D other) 		// Функција која овозможува судир на непријател со ласерот од играчот
     {
         if (other.transform.CompareTag("Laser"))
         {
             Laser laser = other.GetComponent<Laser>();
             if (laser.isFromPlayer)
             {
-                TakeDamage(laser.GetDamage()); 				// доколку има судир непријателот прима штета
-                Destroy (other.gameObject); 				// ласерот при судир се уништува
+                TakeDamage(laser.GetDamage()); 		// доколку има судир непријателот прима штета
+                Destroy (other.gameObject); 		// ласерот при судир се уништува
             }
         }
     }
 
-    public abstract int GetMaxHealth(); 				/* Апстрактна функција која враќа вредност на health 
-    									и се преоптоварува во MonsterBehaviour и BossBehaviour*/
-    public abstract int GetCoins(); 					/* Апстрактна фукнција која враќа вредност на паричките што ги испушта  
-    									непријателоти се преоптоварува во MonsterBehaviour и BossBehaviour*/
+    public abstract int GetMaxHealth(); 		/* Апстрактна функција која враќа вредност на health 
+    							и се преоптоварува во MonsterBehaviour и BossBehaviour*/
+    public abstract int GetCoins(); 			/* Апстрактна фукнција која враќа вредност на паричките што ги испушта  
+    							непријателоти се преоптоварува во MonsterBehaviour и BossBehaviour*/
 }
 ```
 
