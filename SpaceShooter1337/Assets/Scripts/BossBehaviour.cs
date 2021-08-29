@@ -34,7 +34,8 @@ public class BossBehaviour : EnemyBehaviour
 
     void ShootPlayer()
     {
-        direction = (player.position - transform.position).normalized;
+        
+        direction = (player.position - transform.position).normalized ;
         laser = Instantiate(laserPrefab, spawnSpot.position, Quaternion.identity);
         laser.Init(direction, 5f, false);
     }
