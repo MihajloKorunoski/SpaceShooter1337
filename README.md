@@ -41,12 +41,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-							/*абстрактна класа за непријателите 
+							/* абстрактна класа за непријателите 
 							(од оваа класа наследуваат BossBehaviour и MonsterBehaviour) */
 public abstract class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private Coin goldCoin; 		//Овозможува поврзување на непријателот со паричките
-    private int health { get; set; } 			//health на чудовиштата
+    [SerializeField] private Coin goldCoin; 		// Овозможува поврзување на непријателот со паричките
+    private int health { get; set; } 			// health на чудовиштата
 
     void Awake() 					// Unity функција која што се извршува пред да почне играта
     {
@@ -76,7 +76,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other) 		// Функција која овозможува судир на непријател со ласерот од играчот
+    void OnTriggerEnter2D(Collider2D other) 		//Функција која овозможува судир на непријател со ласер од играчот
     {
         if (other.transform.CompareTag("Laser"))
         {
@@ -91,7 +91,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     public abstract int GetMaxHealth(); 		/* Апстрактна функција која враќа вредност на health 
     							и се преоптоварува во MonsterBehaviour и BossBehaviour*/
-    public abstract int GetCoins(); 			/* Апстрактна фукнција која враќа вредност на паричките што ги испушта  
+    public abstract int GetCoins(); 			/*Апстрактна фукнција која враќа вредност на паричките што ги испушта  
     							непријателоти се преоптоварува во MonsterBehaviour и BossBehaviour*/
 }
 ```
