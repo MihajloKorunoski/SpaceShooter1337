@@ -1,6 +1,10 @@
 # SpaceShooter1337
 Space Shooter 1337 Game (Visual Programming Project)
+
+https://mega.nz/folder/2dxgTbpA#TmFsQ1Kh8LNLLe7rQGBvIw - Линк за превземање на извршена верзија од играта
+
 Ленче Владимирова 191075
+
 Михајло Коруноски 191082
 
 
