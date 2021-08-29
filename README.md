@@ -77,7 +77,8 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     void TakeDamage(int damage) // Функција која манипулира со health на непријателите
     {
-        health = Mathf.Max(0, health - damage); /* новата енергија пресметана како макс од разликата на новата енергија и направената штета или нула во случај да не биде негативна health */
+        health = Mathf.Max(0, health - damage); /* новата енергија пресметана како макс од 
+	разликата на новата енергија и направената штета или нула, во случај да биде негативна разликата */
 
         if (health == 0)
         {
@@ -99,7 +100,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
     }
 
     public abstract int GetMaxHealth(); // Апстрактна функција која враќа вредност на health и се преоптоварува во MonsterBehaviour и BossBehaviour
-    public abstract int GetCoins(); /* Апстрактна фукнција која вража вредност на паричките што ги испушта непријателот и се преоптоварува во MonsterBehaviour и BossBehaviour*/
+    public abstract int GetCoins(); /* Апстрактна фукнција која враќа вредност на паричките што ги испушта непријателот и се преоптоварува во MonsterBehaviour и BossBehaviour*/
 }
 ```
 
