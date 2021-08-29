@@ -128,8 +128,9 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
 При кликнување на ИЗЛЕЗ, играта се исклучува.
 
-слика 1 
-![This is an image](https://ibb.co/NjMnKQz)
+###### Слика 1
+
+![Слика 1](https://i.ibb.co/vPSvkg8/Screenshot-2.png)
 
 
 ## 3.2 ВТОРА СЦЕНА
