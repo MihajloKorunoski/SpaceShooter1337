@@ -19,6 +19,67 @@ SpaceShooter1337 претставува едноставна 2Д игра во �
 Има чудовишта кои доаѓаат во бранови. И непријателите може да ме пукаат. 
 Ако се допрам до непријател или ме пукнат, ќе умре играчот и играта завршува. 
 
+	
+	
+...
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/*абстрактна класа за непријателите (од оваа класа наследува BossBehaviour, каде што се препокриваат апстрактните методи 
+*/
+
+public abstract class EnemyBehaviour : MonoBehaviour
+{
+    [SerializeField] private Coin goldCoin;
+    private int health { get; set; }
+
+    void Awake()
+    {
+        health = GetMaxHealth();
+        if (gameObject == null)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    protected virtual void Die()
+    {
+        int coins = GetCoins();
+        for (int i = 0; i < coins; ++i)
+            Instantiate(goldCoin, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+    }
+
+    void TakeDamage(int damage)
+    {
+        health = Mathf.Max(0, health - damage);
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.CompareTag("Laser"))
+        {
+            Laser laser = other.GetComponent<Laser>();
+            if (laser.isFromPlayer)
+            {
+                TakeDamage(laser.GetDamage());
+                Destroy (other.gameObject);
+            }
+        }
+    }
+
+    public abstract int GetMaxHealth();
+    public abstract int GetCoins();
+}
+...
+	
 
 
 ##3. Упатство за користењe
